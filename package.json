@@ -1,0 +1,24 @@
+{
+  "name": "excel-app",
+  "version": "1.0.0",
+  "description": "Excel Application on pure JavaScript",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlad-svr/excel-app.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Vladislav Sviridow <v_l_a_d_i_k1@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vlad-svr/excel-app/issues"
+  },
+  "homepage": "https://github.com/vlad-svr/excel-app#readme"
+}
