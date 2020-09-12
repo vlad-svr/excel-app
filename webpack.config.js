@@ -8,6 +8,15 @@ const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
 console.log('IS PROD:', isProd)
 
+const PATHS = {
+    src: path.resolve(__dirname, 'src'),
+    dist: path.resolve(__dirname, 'dist'),
+    views: path.resolve(__dirname, 'src/assets'),
+    assets: 'assets',
+}
+
+console.log(PATHS.src, path.resolve(__dirname, 'src'))
+
 const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
 const jsLoaders = () => {
@@ -26,20 +35,20 @@ const jsLoaders = () => {
 }
 
 module.exports = {
-    context: path.resolve(__dirname, 'src'),
+    context: PATHS.src,
     mode: 'development',
     entry: {
         main: ['@babel/polyfill', './index.js'],
     },
     output: {
         filename: filename('js'),
-        path: path.resolve(__dirname, 'dist')
+        path: PATHS.dist
     },
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@': path.resolve(__dirname, 'src'),
-            '@core': path.resolve(__dirname, 'src/core')
+            '@': PATHS.src,
+            // '@core': path.resolve(__dirname, 'src/core')
         }
     },
     devtool: isDev ? 'source-map' : false,
@@ -56,12 +65,28 @@ module.exports = {
                 collapseWhitespace: isProd,
             }
         }),
+        new HTMLWebpackPlugin({
+            filename: `${PATHS.assets}/dashboard.html`,
+            template: `${PATHS.views}/dashboard.html`,
+            minify: {
+                removeComments: isProd,
+                collapseWhitespace: isProd,
+            }
+        }),
+        new HTMLWebpackPlugin({
+            filename: `${PATHS.assets}/excel.html`,
+            template: `${PATHS.views}/excel.html`,
+            minify: {
+                removeComments: isProd,
+                collapseWhitespace: isProd,
+            }
+        }),
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, 'src/favicon.ico'),
-                    to: path.resolve(__dirname, 'dist')
-                },
+                    from: `${PATHS.src}/favicon.ico`,
+                    to: PATHS.dist
+                }
             ],
         }),
         new MiniCssExtractPlugin({
