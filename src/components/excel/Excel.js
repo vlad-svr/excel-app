@@ -1,4 +1,5 @@
 import {$} from '@core/dom'
+
 export class Excel {
     constructor(selector, options) {
         this.$el = $(selector)
