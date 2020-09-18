@@ -3,22 +3,31 @@ const CODES = {
     Z: 90
 }
 
-function toCell() {
-        return `
-            <div class="cell" contenteditable></div>
-        `
+function toCell(_, col) {
+    return `
+        <div class="cell" data-col="${col}"
+         contenteditable></div>
+    `
 }
 
-function toColumn(value) {
+function toColumn(value, index) {
     return `
-        <div class="column">${value}</div>
+        <div class="column" data-type="resizable" data-col="${index}">
+            ${value}
+            <div class="col-resize" data-resize="col"></div>
+        </div>
     `
 }
 
 function createRow(content, index, emptyCell = '') {
+    const resize = index ?
+        '<div class="row-resize" data-resize="row"></div>' : '';
     return `
-        <div class="row">
-            <div class="row-info ${emptyCell}">${index ? index : ''}</div>
+        <div class="row" data-type="resizable">
+            <div class="row-info ${emptyCell}">
+                ${index ? index : ''}
+                ${resize}
+            </div>
             <div class="row-data">${content}</div>
         </div>
     `
@@ -49,40 +58,3 @@ export function createTable(rowsCount = 15) {
     }
     return rows.join('')
 }
-
-// `
-//             <div class="row">
-//
-//                 <div class="row-info empty-cell"></div>
-//
-//                 <div class="row-data">
-//                     <div class="column">A</div>
-//                     <div class="column">B</div>
-//                     <div class="column">C</div>
-//                 </div>
-//
-//             </div>
-//
-//             <div class="row">
-//
-//                 <div class="row-info">1</div>
-//
-//                 <div class="row-data">
-//                     <div class="cell selected" contenteditable>A1</div>
-//                     <div class="cell" contenteditable>B1</div>
-//                     <div class="cell" contenteditable>C1</div>
-//                 </div>
-//
-//             </div>
-//             <div class="row">
-//
-//                 <div class="row-info">2</div>
-//
-//                 <div class="row-data">
-//                     <div class="cell" contenteditable>A2</div>
-//                     <div class="cell" contenteditable>B2</div>
-//                     <div class="cell" contenteditable>C2</div>
-//                 </div>
-//
-//             </div>
-//         `
