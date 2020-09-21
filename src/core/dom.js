@@ -9,9 +9,23 @@ class Dom {
         if (typeof html === 'string') {
             this.$el.innerHTML = html
             return this
-        } else {
-            return this.$el.outerHTML.trim()
         }
+        return this.$el.outerHTML.trim()
+    }
+
+    text(text) {
+        if (typeof text === 'string') {
+            if (this.$el.tagName.toLowerCase() === 'input') {
+                this.$el.textContent = text
+                return this
+            }
+            this.$el.textContent = text
+            return this
+        }
+        if (this.$el.tagName.toLowerCase() === 'input') {
+            return this.$el.value.trim()
+        }
+        return this.$el.textContent.trim()
     }
 
     on(eventType, callback) {
@@ -35,10 +49,36 @@ class Dom {
         return this.$el.getBoundingClientRect()
     }
 
+    addClass(cls) {
+        this.$el.classList.add(cls)
+        return this
+    }
+
+    removeClass(cls) {
+        this.$el.classList.remove(cls)
+        return this
+    }
+
     css(styles) {
         Object
             .keys(styles)
             .forEach(key => this.$el.style[key] = styles[key])
+        return this
+    }
+
+    id(parse) {
+        if (parse) {
+            const parsed = this.id().split(':');
+            return {
+                row: +parsed[0],
+                col: +parsed[1]
+            }
+        }
+        return this.data.id
+    }
+
+    focus() {
+        this.$el.focus()
         return this
     }
 
@@ -49,6 +89,10 @@ class Dom {
 
     findAll(selector) {
         return this.$el.querySelectorAll(selector)
+    }
+
+    find(selector) {
+        return $(this.$el.querySelector(selector))
     }
 
     get data() {
