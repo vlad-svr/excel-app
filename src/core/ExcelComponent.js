@@ -35,9 +35,7 @@ export class ExcelComponent extends DomListener {
         this.store.dispatch(action)
     }
 
-    storeChanged() {
-
-    }
+    storeChanged() {}
 
     isWatching(key) {
         return this.subscribe.includes(key)

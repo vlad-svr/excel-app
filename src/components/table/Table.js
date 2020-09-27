@@ -74,7 +74,6 @@ export class Table extends ExcelComponent {
         if (shouldResize(event)) {
             this.resizeTable(event)
         } else if (isCell(event)) {
-            // this.$emit('table:select', $(event.target))
             if (event.ctrlKey) {
                 this.selection.selectKey($(event.target))
             } else if (event.shiftKey) {

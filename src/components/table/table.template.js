@@ -11,16 +11,10 @@ const DEFAULT_WIDTH = 120
 const DEFAULT_HEIGHT = 24
 
 function getWidth(state, index) {
-    // return ((!state.colState || !state.colState[index])
-    //     ? DEFAULT_WIDTH
-    //     : state.colState[index]) + 'px'
     return (state[index] || DEFAULT_WIDTH) + 'px'
 }
 
 function getHeight(state, index) {
-    // return ((!state.rowState || !state.rowState[index])
-    // ? DEFAULT_HEIGHT
-    // : state.rowState[index]) + 'px'
     return (state[index] || DEFAULT_HEIGHT) + 'px'
 }
 

@@ -13,7 +13,6 @@ import './scss/index.scss'
 const store = createStore(rootReducer, initialState)
 
 const stateListener = debounce(state => {
-    console.log('App Store: ', state)
     storage('excel-state', state)
 }, 300)
 

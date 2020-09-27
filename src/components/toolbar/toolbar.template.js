@@ -5,13 +5,12 @@ function toButton(button) {
     `
     return `
             <div
-             class="button ${button.active ? 'active' : ''}"
-             ${meta}
-            >
-                <span
-                class="material-icons" 
+                class="button ${button.active ? 'active' : ''}"
                 ${meta}
-                >${button.icon}</span>
+            >
+                <span class="material-icons" ${meta}>
+                    ${button.icon}
+                </span>
             </div>
             `
 }
@@ -57,7 +56,6 @@ export function createToolbar(s) {
             }
         },
     ]
-    console.log(buttons)
 
     return buttons.map(toButton).join('')
 }
