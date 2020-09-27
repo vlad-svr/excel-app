@@ -3,6 +3,7 @@ export function shouldResize(event) {
 }
 
 export function isCell(event) {
+    if (!event.target.closest('[data-type="cell"]')) return
     return event.target.dataset.type === 'cell'
 }
 
