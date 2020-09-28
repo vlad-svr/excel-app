@@ -1,4 +1,4 @@
-import {isEqual} from '@core/utils';
+import {isDev, isEqual} from '@core/utils';
 
 export class StoreSubscriber {
     constructor(store) {
@@ -21,6 +21,10 @@ export class StoreSubscriber {
                 }
             })
             this.prevState = this.store.getState()
+
+            if (isDev()) {
+                window['redux'] = this.prevState
+            }
         })
     }
 
