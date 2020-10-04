@@ -16,12 +16,12 @@ export function resizeHandler(event, $root) {
 
         document.onmousemove = e => {
             if (type === 'col') {
-                const delta = e.pageX - coords.right
+                const delta = e.pageX - coords.right - window.scrollX
                     + $resizer.getCoords().width / 2
                 value = coords.width + delta
                 $resizer.css({'right': -delta + 'px'})
             } else {
-                const delta = e.pageY - coords.bottom
+                const delta = e.pageY - coords.bottom - window.scrollY
                     + $resizer.getCoords().height / 2
                 value = coords.height + delta
                 $resizer.css({'bottom': -delta + 'px'})
